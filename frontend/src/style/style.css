@@ -12,6 +12,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
+  position: relative;
 }
 
 .main {
@@ -49,15 +50,15 @@ a {
 
 .main-nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #00bc77;
 }
 
 .main-nav-item {
   margin-right: 0.5rem;
-}
-
-.main-nav-item:hover {
-  text-decoration: underline;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
 }
 
 .main-nav-logo {
@@ -68,6 +69,25 @@ a {
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.nav-login {
+  display: flex;
+  gap: 20px;
+}
+
+.off, .on {
+  color: #2c3e50;
+}
+
+.nav-svg {
+  width: 30px;
+  height: 30px;
+  color: #00bc77;
+}
+
+.on:hover {
+  text-decoration: underline;
 }
 
 .hero {
@@ -161,6 +181,7 @@ a {
   display: flex;
   justify-content: center;
   border-top: 2px solid #ccc;
+  margin-top: 150px;
   padding: 2rem 0 1.5rem;
   position: absolute;
   bottom: 0;
