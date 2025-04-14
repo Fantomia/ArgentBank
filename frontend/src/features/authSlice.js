@@ -24,8 +24,13 @@ const authSlice = createSlice({
     loginFailure: (state, action) => {
       state.error = action.payload;  // Stocker le message d'erreur
     },
+    updateUsername(state, action) {
+      if (state.user) {
+        state.user.userName = action.payload; // Mettre à jour le nom d'utilisateur
+      }
+    },
   },
 });
 
-export const { loginSuccess, setUserData, logout, loginFailure } = authSlice.actions;
+export const { loginSuccess, setUserData, logout, loginFailure, updateUsername } = authSlice.actions;
 export default authSlice.reducer;

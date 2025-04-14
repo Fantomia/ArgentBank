@@ -1,4 +1,4 @@
-import { loginSuccess, loginFailure, setUserData, logout } from "./authSlice";
+import { loginSuccess, loginFailure, setUserData, updateUsername, logout } from "./authSlice";
 
 export const loginUser = (credentials) => async (dispatch) => {
   try {
@@ -11,7 +11,6 @@ export const loginUser = (credentials) => async (dispatch) => {
     const data = await response.json();
 
     if (!response.ok) {
-      // Vérification du type d'erreur pour personnaliser le message
       let errorMessage = "Une erreur s'est produite. Veuillez réessayer.";
 
       if (data.message) {
@@ -59,6 +58,36 @@ export const fetchUserData = () => async (dispatch, getState) => {
     dispatch(setUserData(data.body));
   } catch (error) {
     console.error("Erreur lors de la récupération des infos de l'utilisateur:", error);
+  }
+};
+
+export const updateUserUsername = (newUsername) => async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token;
+
+    if (!token) {
+      console.error("Token manquant");
+      return;
+    }
+
+    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ userName: newUsername }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erreur ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    dispatch(updateUsername(newUsername)); // Met à jour l'userName dans Redux
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du username", error);
   }
 };
 
