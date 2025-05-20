@@ -13,7 +13,7 @@ import Footer from './components/footer/footer';
 function App() {
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const mainClass = isHome ? '' : 'main bg-dark';
+  const mainClass = isHome ? 'main' : 'main bg-dark';
 
   const dispatch = useDispatch();
 

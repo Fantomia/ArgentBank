@@ -32,7 +32,7 @@ const UpdateUser = () => {
     <div className="header">
         {user && ( // Vérifier si l'utilisateur est connecté
           <>
-            <h1>Welcome back, {user.firstName} {user.lastName}!</h1>
+            <h1>Welcome back,<br></br> {user.firstName} {user.lastName}!</h1>
             {!isEditing ? ( // Afficher le formulaire d'édition
               <button className="edit-button" onClick={() => setIsEditing(true)}> 
                 Edit Name
