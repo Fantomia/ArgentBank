@@ -1,4 +1,5 @@
 import { accounts } from "../../data/accounts";
+import SectionItem from "../sectionItem/sectionItem";
 import UpdateUser from "../updateUser/updateUser";
 
 const Account = () => {
@@ -9,16 +10,16 @@ const Account = () => {
 
             <h2 className="sr-only">Accounts</h2>
                 {accounts.map((account) => (
-                    <section key={account.id} className="account">
-                        <div className="account-content-wrapper">
-                            <h3 className="account-title">{account.name}</h3>
-                            <p className="account-amount">${account.balance}</p>
-                            <p className="account-amount-description">{account.description}</p>
-                        </div>
-                        <div className="account-content-wrapper cta">
-                            <button className="transaction-button">View transactions</button>
-                        </div>
-                    </section>
+                    <SectionItem
+                        key={account.id}
+                        title={account.name}
+                        amount={account.balance}
+                        currency={account.currency}
+                        description={account.description}
+                        customClass="account"
+                    >
+                        <button className="transaction-button">View transactions</button>
+                    </SectionItem>
                 ))}
         </>
     )

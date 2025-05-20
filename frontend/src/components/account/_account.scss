@@ -11,6 +11,9 @@
     box-sizing: border-box;
     text-align: left;
     margin-bottom: 2rem;
+    & p {
+        margin: 0;
+    }
 }
   
 .account-amount {

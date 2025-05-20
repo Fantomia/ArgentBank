@@ -1,9 +1,9 @@
-import Section from '../../components/section/section'
+import AppDesc from "../../components/appDesc/appDesc";
 
 const Home = () => {
     return (
         <>
-            <Section />
+            <AppDesc />
         </>
     )
 }

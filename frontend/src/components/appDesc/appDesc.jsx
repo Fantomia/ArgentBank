@@ -1,6 +1,7 @@
 import features from '../../data/features.json';
+import SectionItem from '../sectionItem/sectionItem';
 
-const Section = () => {
+const AppDesc = () => {
   return (
     <>
       <div className="hero">
@@ -16,15 +17,18 @@ const Section = () => {
       <section className="features">
         <h2 className="sr-only">Features</h2>
         {features.map((feature) => (
-          <div key={feature.id} className="feature-item">
-            <img src={feature.icon} alt={feature.title} className="feature-icon" />
-            <h3 className="feature-item-title">{feature.title}</h3>
-            <p>{feature.description}</p>
-          </div>
+          <SectionItem
+            key={feature.id}
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            customClass="feature-item"
+          />
         ))}
       </section>
+
     </>
   );
 };
 
-export default Section;
+export default AppDesc;
