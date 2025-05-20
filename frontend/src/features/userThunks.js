@@ -1,6 +1,6 @@
 import { loginSuccess, loginFailure, setUserData, updateUsername, logout } from "./authSlice";
 
-export const loginUser = (credentials) => async (dispatch) => {
+export const loginUser = (credentials, rememberMe) => async (dispatch) => {
   try {
     const response = await fetch("http://localhost:3001/api/v1/user/login", {
       method: "POST",
@@ -26,7 +26,11 @@ export const loginUser = (credentials) => async (dispatch) => {
 
     if (data.body && data.body.token) {
       dispatch(loginSuccess({ token: data.body.token }));
-      localStorage.setItem("token", data.body.token);
+      if (rememberMe) {
+        localStorage.setItem("token", data.body.token);
+      } else {
+        sessionStorage.setItem("token", data.body.token);
+      }
       dispatch(fetchUserData());
     } else {
       throw new Error("Invalid credentials");
@@ -93,5 +97,6 @@ export const updateUserUsername = (newUsername) => async (dispatch, getState) =>
 
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('token');
+  sessionStorage.removeItem('token');
   dispatch(logout());
 };

@@ -7,29 +7,16 @@ const Form = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const savedEmail = localStorage.getItem('email');
-  const savedPassword = localStorage.getItem('password');
   const [rememberMe, setRememberMe] = useState(false);
-  const [email, setEmail] = useState(savedEmail || '');
-  const [password, setPassword] = useState(savedPassword || '');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const error = useSelector((state) => state.auth.error);  // Récupérer l'erreur depuis Redux
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Si "Remember me" est coché, stocker l'email et le mot de passe dans le localStorage
-    if (rememberMe) {
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
-    } else {
-      // Si non coché, retirer les données du localStorage
-      localStorage.removeItem('email');
-      localStorage.removeItem('password');
-    }
-
-    dispatch(loginUser({ email, password }));
-  };
+  e.preventDefault();
+  dispatch(loginUser({ email, password }, rememberMe));
+};
 
   const token = useSelector((state) => state.auth.token); // Récupérer le token depuis Redux
 

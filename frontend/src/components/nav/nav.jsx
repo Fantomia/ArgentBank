@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../features/userThunks";
@@ -8,7 +7,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
   const handleLogout = () => {
     dispatch(logoutUser());

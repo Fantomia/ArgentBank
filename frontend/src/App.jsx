@@ -18,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token) {
       dispatch(loginSuccess({ token }));  // Charge le token dans Redux
       dispatch(fetchUserData());  // Récupère les infos de l'utilisateur
