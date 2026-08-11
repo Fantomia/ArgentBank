@@ -1,8 +1,10 @@
 import { loginSuccess, loginFailure, setUserData, updateUsername, logout } from "./authSlice";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://argentbank-zqqo.onrender.com/api/v1";
+
 export const loginUser = (credentials, rememberMe) => async (dispatch) => {
   try {
-    const response = await fetch("http://localhost:3001/api/v1/user/login", {
+    const response = await fetch(`${API_URL}/user/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
@@ -46,7 +48,7 @@ export const fetchUserData = () => async (dispatch, getState) => {
     const token = getState().auth.token;
     if (!token) throw new Error("Token manquant");
 
-    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+    const response = await fetch(`${API_URL}/user/login`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +76,7 @@ export const updateUserUsername = (newUsername) => async (dispatch, getState) =>
       return;
     }
 
-    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+    const response = await fetch(`${API_URL}/user/profile`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

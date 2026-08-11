@@ -4,10 +4,11 @@ info:
   description: Contains all available API endpoints in this codebase
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
-host: localhost:3001
+host: argentbank-zqqo.onrender.com
 basePath: /api/v1
 schemes:
   - http
+  - https
 paths:
   /user/login:
     post:
