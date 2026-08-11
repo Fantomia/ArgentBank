@@ -21,7 +21,7 @@ const AppDesc = () => {
             key={feature.id}
             title={feature.title}
             description={feature.description}
-            icon={feature.icon}
+            icon={`${import.meta.env.BASE_URL}${feature.icon}`}
             customClass="feature-item"
           />
         ))}
