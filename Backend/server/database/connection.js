@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 const databaseUrl =
-  process.env.DATABASE_URL  
+  process.env.DATABASE_URL || 'mongodb://localhost:27017/argentBank'
 
 module.exports = async () => {
   try {
     await mongoose.connect(databaseUrl, {
-      ssl: true,
-      tlsAllowInvalidCertificates: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     })
     console.log('Database successfully connected')
   } catch (error) {
